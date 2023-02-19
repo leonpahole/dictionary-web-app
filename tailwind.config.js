@@ -44,15 +44,27 @@ module.exports = {
         30.75: pxToRem(123),
       },
       margin: {
+        2.25: pxToRem(9),
+        3.25: pxToRem(13),
         4.5: pxToRem(18),
+        5.5: pxToRem(22),
+        6.25: pxToRem(25),
         6.5: pxToRem(26),
+        11.25: pxToRem(45),
         12.875: pxToRem(51.5),
+      },
+      gap: {
+        5.5: pxToRem(22),
       },
       maxWidth: {
         page: pxToRem(737),
       },
       width: {
         47.75: pxToRem(183),
+        18.75: pxToRem(75),
+      },
+      height: {
+        18.75: pxToRem(75),
       },
       boxShadow: {
         d: "0px 5px 30px rgba(0, 0, 0, 0.1)",
