@@ -3,11 +3,12 @@ import { useState } from "react";
 import Image from "next/image";
 
 interface IProps {
-  onSubmit(word: string): void;
+  onSubmit(word: string): Promise<void>;
 }
 
 export const WordSearch = ({ onSubmit }: IProps) => {
   const [text, setText] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   const isValid = text.trim().length > 0;
@@ -17,13 +18,22 @@ export const WordSearch = ({ onSubmit }: IProps) => {
     setText(val);
   };
 
-  const onSubmitClick = () => {
+  const onSubmitClick = async () => {
+    if (isSubmitting) {
+      return;
+    }
+
     if (!isValid) {
       setError("Whoops, can't be empty...");
       return;
     }
 
-    onSubmit(text);
+    try {
+      setIsSubmitting(true);
+      await onSubmit(text);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -48,6 +58,7 @@ export const WordSearch = ({ onSubmit }: IProps) => {
         />
         <button
           onClick={onSubmitClick}
+          disabled={isSubmitting}
           type="submit"
           className="absolute inset-y-0 right-6"
         >
