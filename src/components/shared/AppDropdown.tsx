@@ -30,7 +30,7 @@ export const AppDropdown = ({
       onChange={({ value: selectedValue }) => {
         onSelect(selectedValue);
       }}
-      className="!font-bm !font-bold"
+      className="font-bs md:!font-bm !font-bold"
       controlClassName="!p-0 !bg-transparent !border-none !flex !items-center !justify-between !shadow-none !cursor-pointer !text-gray-500 dark:!text-white"
       menuClassName="!py-4 !rounded-2xl !w-47.75 !border-none !shadow-d dark:!shadow-p !mt-4.5 !right-0 dark:!bg-gray-600"
       arrowClosed={<Arrow open={false} />}

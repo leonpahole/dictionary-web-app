@@ -1,11 +1,14 @@
 import { WordDisplay } from "@/components/word/WordDisplay/WordDisplay";
+import { WordNotFoundDisplay } from "@/components/word/WordNotFoundDisplay";
 import { WordSearch } from "@/components/word/WordSearch/WordSearch";
 import { DictionaryModels } from "@/utils/dictionary/dictionary.models";
 import { DictionaryService } from "@/utils/dictionary/dictionary.service";
 import { useState } from "react";
 
 export const WordView = () => {
-  const [word, setWord] = useState<DictionaryModels.Word | null>(null);
+  const [word, setWord] = useState<DictionaryModels.Word | null | undefined>(
+    undefined
+  );
 
   const onSubmit = async (text: string) => {
     try {
@@ -13,6 +16,7 @@ export const WordView = () => {
       setWord(result);
     } catch (e) {
       console.error(e);
+      setWord(null);
     }
   };
 
@@ -20,6 +24,7 @@ export const WordView = () => {
     <>
       <WordSearch onSubmit={onSubmit} />
       {word && <WordDisplay word={word} />}
+      {word === null && <WordNotFoundDisplay />}
     </>
   );
 };

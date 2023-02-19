@@ -19,7 +19,7 @@ export const ColorSchemeSwitcher = withClientOnly(() => {
           alt={`Turn dark mode ${isDarkMode ? "off" : "on"}`}
           width="20"
           height="20"
-          className="ml-5"
+          className="ml-3 md:ml-5"
           color="red"
         />
       }

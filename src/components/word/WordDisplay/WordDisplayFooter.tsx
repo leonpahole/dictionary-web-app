@@ -14,8 +14,8 @@ export const WordDisplayFooter = ({ sources }: IProps) => {
 
   return (
     <div>
-      <hr className="mt-10 mb-5 w-full bg-gray-200 dark:bg-gray-400" />
-      <div className="flex flex-wrap gap-5">
+      <hr className="mt-8 mb-6 w-full bg-gray-200 dark:bg-gray-400 md:mb-5 md:mt-10" />
+      <div className="gap flex flex-col flex-wrap gap-2 md:flex-row md:gap-5">
         <h3 className="text-bs text-gray-300 underline">Source</h3>
         {sources.map((source) => (
           <Link

@@ -18,8 +18,14 @@ export const PlaySoundButton = ({ audioUrl }: IProps) => {
   };
 
   return (
-    <button type="button" onClick={play}>
-      <Image src={IconPlay} alt="Play audio" width="75" height="75" />
+    <button type="button" onClick={play} className="flex-shrink-0">
+      <Image
+        src={IconPlay}
+        alt="Play audio"
+        width="75"
+        height="75"
+        className="h-12 w-12 md:h-18.75 md:w-18.75"
+      />
     </button>
   );
 };

@@ -9,9 +9,11 @@ export const WordDisplayHeader = ({ word }: IProps) => {
   return (
     <div className="flex items-center justify-between">
       <div>
-        <h1 className="mb-2 text-hl font-bold">{word.word}</h1>
+        <h1 className="mb-2 text-hl-m font-bold md:text-hl">{word.word}</h1>
         {word.phonetic && (
-          <h2 className="text-hm text-purple-100">{word.phonetic}</h2>
+          <h2 className="text-bm text-purple-100 md:text-hm">
+            {word.phonetic}
+          </h2>
         )}
       </div>
       {word.audioUrl && <PlaySoundButton audioUrl={word.audioUrl} />}

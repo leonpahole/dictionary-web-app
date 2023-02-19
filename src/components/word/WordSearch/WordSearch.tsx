@@ -38,9 +38,9 @@ export const WordSearch = ({ onSubmit }: IProps) => {
           aria-label="Enter a word and press enter or the submit button to search."
           type="text"
           placeholder="Search for any word..."
-          className={`w-full rounded-2xl bg-gray-100 py-5 px-6 text-hs font-bold 
-          placeholder-gray-500 placeholder-opacity-25 
-          focus:outline focus:outline-1 focus:outline-purple-100 
+          className={`w-full rounded-2xl bg-gray-100 py-3.5 px-6 text-bs font-bold placeholder-gray-500 placeholder-opacity-25 
+          focus:outline focus:outline-1 
+          focus:outline-purple-100 md:py-5 md:text-hs 
           ${error != null ? "outline outline-1 outline-red-100 " : ""}
           dark:bg-gray-600 dark:placeholder-white dark:placeholder-opacity-25`}
           aria-invalid={error == null}

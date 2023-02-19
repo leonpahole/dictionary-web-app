@@ -34,9 +34,12 @@ module.exports = {
       },
       fontSize: {
         hl: [pxToRem(64), pxToRem(77)],
+        "hl-m": [pxToRem(32), pxToRem(34)],
         hm: [pxToRem(24), pxToRem(29)],
         hs: [pxToRem(20), pxToRem(24)],
+        "hs-m": [pxToRem(16), pxToRem(19)],
         bm: [pxToRem(18), pxToRem(24)],
+        "bm-m": [pxToRem(15), pxToRem(24)],
         bs: [pxToRem(14), pxToRem(17)],
       },
       padding: {
@@ -52,6 +55,7 @@ module.exports = {
         6.5: pxToRem(26),
         11.25: pxToRem(45),
         12.875: pxToRem(51.5),
+        33: pxToRem(132),
       },
       gap: {
         5.5: pxToRem(22),

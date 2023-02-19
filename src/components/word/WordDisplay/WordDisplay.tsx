@@ -9,7 +9,7 @@ interface IProps {
 
 export const WordDisplay = ({ word }: IProps) => {
   return (
-    <article className="mt-11.25">
+    <article className="mt-7 md:mt-11.25">
       <WordDisplayHeader word={word} />
       {word.meanings.map((meaning) => (
         <WordDisplayMeaning meaning={meaning} />
