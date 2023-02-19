@@ -10,7 +10,6 @@ This is a solution to the [Dictionary web app challenge on Frontend Mentor](http
     - [The challenge](#the-challenge)
     - [Links](#links)
     - [Built with](#built-with)
-    - [What I learned](#what-i-learned)
   - [Author](#author)
 
 ## Overview
@@ -38,11 +37,8 @@ Users should be able to:
 
 - Next.js
 - Tailwind
-- TBD
-
-### What I learned
-
-TBD
+- React-toggle
+- React-dropdown
 
 ## Author
 
