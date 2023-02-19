@@ -7,6 +7,7 @@ const pxToRem = (px) => {
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
@@ -37,6 +38,25 @@ module.exports = {
         hs: [pxToRem(20), pxToRem(24)],
         bm: [pxToRem(18), pxToRem(24)],
         bs: [pxToRem(14), pxToRem(17)],
+      },
+      padding: {
+        14.5: pxToRem(58),
+        30.75: pxToRem(123),
+      },
+      margin: {
+        4.5: pxToRem(18),
+        6.5: pxToRem(26),
+        12.875: pxToRem(51.5),
+      },
+      maxWidth: {
+        page: pxToRem(737),
+      },
+      width: {
+        47.75: pxToRem(183),
+      },
+      boxShadow: {
+        d: "0px 5px 30px rgba(0, 0, 0, 0.1)",
+        p: "0px 5px 30px #A445ED",
       },
     },
   },
