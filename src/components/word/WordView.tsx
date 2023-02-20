@@ -3,6 +3,7 @@ import { WordNotFoundDisplay } from "@/components/word/WordNotFoundDisplay";
 import { WordSearch } from "@/components/word/WordSearch/WordSearch";
 import { DictionaryModels } from "@/utils/dictionary/dictionary.models";
 import { DictionaryService } from "@/utils/dictionary/dictionary.service";
+import Head from "next/head";
 import { useEffect, useState } from "react";
 
 interface IProps {
@@ -24,8 +25,20 @@ export const WordView = ({ word: prefilledWord }: IProps) => {
     setWord(result);
   };
 
+  let title: string | null = null;
+  if (word) {
+    title = `${word.word} | Dictionary`;
+  } else if (word === null) {
+    title = `Not found | Dictionary`;
+  }
+
   return (
     <>
+      {title && (
+        <Head>
+          <title>{title}</title>
+        </Head>
+      )}
       <WordSearch onSubmit={onSubmit} word={word} />
       {word && <WordDisplay word={word} />}
       {word === null && <WordNotFoundDisplay />}

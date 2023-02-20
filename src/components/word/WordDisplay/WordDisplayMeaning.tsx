@@ -26,11 +26,12 @@ export const WordDisplayMeaning = ({ meaning }: IProps) => {
       {meaning.synonyms.length > 0 && (
         <div className="mt-6 flex flex-wrap gap-6 md:mt-10 md:gap-5.5 ">
           <h3 className="text-hs-m text-gray-300 md:text-hs">Synonims</h3>
-          {meaning.synonyms.map((synonym) => (
+          {meaning.synonyms.map((synonym, i) => (
             <Link
               className="text-hs-m font-bold text-purple-100 hover:underline md:text-hs"
               href={`?word=${encodeURIComponent(synonym)}`}
-              key={synonym}
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${synonym}_${i}`}
             >
               {synonym}
             </Link>
