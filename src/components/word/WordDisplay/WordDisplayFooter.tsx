@@ -22,6 +22,7 @@ export const WordDisplayFooter = ({ sources }: IProps) => {
             target="_blank"
             href={source}
             className="flex items-center text-bs"
+            key={source}
           >
             <span className="underline">{source}</span>
             <Image

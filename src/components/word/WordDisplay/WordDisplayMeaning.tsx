@@ -28,8 +28,9 @@ export const WordDisplayMeaning = ({ meaning }: IProps) => {
           <h3 className="text-hs-m text-gray-300 md:text-hs">Synonims</h3>
           {meaning.synonyms.map((synonym) => (
             <Link
-              className="text-hs-m font-bold text-purple-100 md:text-hs"
+              className="text-hs-m font-bold text-purple-100 hover:underline md:text-hs"
               href={`?word=${encodeURIComponent(synonym)}`}
+              key={synonym}
             >
               {synonym}
             </Link>

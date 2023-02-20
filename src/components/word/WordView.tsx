@@ -3,7 +3,7 @@ import { WordNotFoundDisplay } from "@/components/word/WordNotFoundDisplay";
 import { WordSearch } from "@/components/word/WordSearch/WordSearch";
 import { DictionaryModels } from "@/utils/dictionary/dictionary.models";
 import { DictionaryService } from "@/utils/dictionary/dictionary.service";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface IProps {
   word: DictionaryModels.Word | null | undefined;
@@ -11,8 +11,12 @@ interface IProps {
 
 export const WordView = ({ word: prefilledWord }: IProps) => {
   const [word, setWord] = useState<DictionaryModels.Word | null | undefined>(
-    undefined
+    prefilledWord
   );
+
+  useEffect(() => {
+    setWord(prefilledWord);
+  }, [prefilledWord]);
 
   const onSubmit = async (text: string) => {
     DictionaryService.addToQuery(text);
@@ -20,13 +24,11 @@ export const WordView = ({ word: prefilledWord }: IProps) => {
     setWord(result);
   };
 
-  const actualWord = word !== undefined ? word : prefilledWord;
-
   return (
     <>
-      <WordSearch onSubmit={onSubmit} />
-      {actualWord && <WordDisplay word={actualWord} />}
-      {actualWord === null && <WordNotFoundDisplay />}
+      <WordSearch onSubmit={onSubmit} word={word} />
+      {word && <WordDisplay word={word} />}
+      {word === null && <WordNotFoundDisplay />}
     </>
   );
 };

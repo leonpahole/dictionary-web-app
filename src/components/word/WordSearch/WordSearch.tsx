@@ -1,21 +1,35 @@
 import IconSearch from "public/images/icon-search.svg";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { DictionaryModels } from "@/utils/dictionary/dictionary.models";
 
 interface IProps {
   onSubmit(word: string): Promise<void>;
+  word: DictionaryModels.Word | null | undefined;
 }
 
-export const WordSearch = ({ onSubmit }: IProps) => {
-  const [text, setText] = useState<string>("");
+export const WordSearch = ({ onSubmit, word }: IProps) => {
+  const [text, setText] = useState<string>(word?.word ?? "");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   const isValid = text.trim().length > 0;
 
+  const isDirty = useRef<boolean>(false);
+
+  // prefill word
+  useEffect(() => {
+    if (!word) {
+      return;
+    }
+
+    setText(word.word);
+  }, [isValid, word]);
+
   const onChange = (val: string) => {
     setError(null);
     setText(val);
+    isDirty.current = true;
   };
 
   const onSubmitClick = async () => {
@@ -54,6 +68,7 @@ export const WordSearch = ({ onSubmit }: IProps) => {
           ${error != null ? "outline outline-1 outline-red-100 " : ""}
           dark:bg-gray-600 dark:placeholder-white dark:placeholder-opacity-25`}
           aria-invalid={error == null}
+          value={text}
           onChange={(e) => onChange(e.target.value)}
         />
         <button
