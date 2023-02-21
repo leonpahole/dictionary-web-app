@@ -1,15 +1,14 @@
 import IconSearch from "public/images/icon-search.svg";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { DictionaryModels } from "@/utils/dictionary/dictionary.models";
 
 interface IProps {
-  onSubmit(word: string): Promise<void>;
-  word: DictionaryModels.Word | null | undefined;
+  onSubmit(word: string): Promise<boolean>;
+  query: string | undefined;
 }
 
-export const WordSearch = ({ onSubmit, word }: IProps) => {
-  const [text, setText] = useState<string>(word?.word ?? "");
+export const WordSearch = ({ onSubmit, query }: IProps) => {
+  const [text, setText] = useState<string>(query ?? "");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -17,14 +16,16 @@ export const WordSearch = ({ onSubmit, word }: IProps) => {
 
   const isDirty = useRef<boolean>(false);
 
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
   // prefill word
   useEffect(() => {
-    if (!word) {
+    if (!query) {
       return;
     }
 
-    setText(word.word);
-  }, [isValid, word]);
+    setText(query);
+  }, [query]);
 
   const onChange = (val: string) => {
     setError(null);
@@ -44,7 +45,11 @@ export const WordSearch = ({ onSubmit, word }: IProps) => {
 
     try {
       setIsSubmitting(true);
-      await onSubmit(text);
+      const isSuccess = await onSubmit(text);
+
+      if (isSuccess) {
+        inputRef.current?.blur();
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -70,6 +75,7 @@ export const WordSearch = ({ onSubmit, word }: IProps) => {
           aria-invalid={error == null}
           value={text}
           onChange={(e) => onChange(e.target.value)}
+          ref={inputRef}
         />
         <button
           onClick={onSubmitClick}

@@ -8,9 +8,10 @@ import { useEffect, useState } from "react";
 
 interface IProps {
   word: DictionaryModels.Word | null | undefined;
+  query: string | undefined;
 }
 
-export const WordView = ({ word: prefilledWord }: IProps) => {
+export const WordView = ({ word: prefilledWord, query }: IProps) => {
   const [word, setWord] = useState<DictionaryModels.Word | null | undefined>(
     prefilledWord
   );
@@ -19,10 +20,11 @@ export const WordView = ({ word: prefilledWord }: IProps) => {
     setWord(prefilledWord);
   }, [prefilledWord]);
 
-  const onSubmit = async (text: string) => {
+  const onSubmit = async (text: string): Promise<boolean> => {
     DictionaryService.addToQuery(text);
     const result = await DictionaryService.getWord(text);
     setWord(result);
+    return result != null;
   };
 
   let title: string | null = null;
@@ -39,7 +41,7 @@ export const WordView = ({ word: prefilledWord }: IProps) => {
           <title>{title}</title>
         </Head>
       )}
-      <WordSearch onSubmit={onSubmit} word={word} />
+      <WordSearch onSubmit={onSubmit} query={query} />
       {word && <WordDisplay word={word} />}
       {word === null && <WordNotFoundDisplay />}
     </>
